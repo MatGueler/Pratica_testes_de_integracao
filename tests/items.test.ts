@@ -37,11 +37,7 @@ describe("Testa GET /items/:id ", () => {
     const id = await factoryFunctions.getId(body);
     const result = await supertest(app).get(`/items/${id}`);
     expect(result.status).toBe(200);
-    expect({
-      title: "deubom",
-      name: "mat",
-      description: "ola",
-    }).toMatchObject(body);
+    expect(result.body).toMatchObject(body);
   });
   it("Deve retornar status 404 caso não exista um item com esse id", async () => {
     const result = await supertest(app).get(`/items/${0}`);
