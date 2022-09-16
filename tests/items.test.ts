@@ -3,7 +3,10 @@ import { prisma } from "../src/database";
 import app from "../src/app";
 import factoryFunctions from "./factories/itemFactory";
 
-beforeAll(async () => {
+beforeEach(async () => {
+  await prisma.$executeRaw`TRUNCATE TABLE items`;
+});
+afterAll(async () => {
   await prisma.$executeRaw`TRUNCATE TABLE items`;
 });
 
